@@ -18,6 +18,10 @@ export default class TodoList extends React.Component {
     return []
   }
 
+  isCompleted(item) {
+    return item.get('status') === 'completed';
+  }
+
   render() {
     return(
       <section className="main">
@@ -25,7 +29,9 @@ export default class TodoList extends React.Component {
           {this.getItems().map(item => 
             <TodoItem
               key={item.get('text')}
-              text={item.get('text')} />
+              text={item.get('text')}
+              isCompleted={this.isCompleted(item)}
+              isEditing={item.get('editing')} />
           )}
         </ul>
       </section>
